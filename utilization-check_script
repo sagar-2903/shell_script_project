@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "check disk utilization of root filesystem."
+
+disk_utilization=$(df -hT |grep -i  /dev/root | awk '{print $6}' |cut -d '%' -f1)
+
+if [ "$disk_utilization" -gt 80 ]; then
+
+    echo "disk is utilized $disk_utilization%, add space to the disk"
+else
+    echo "disk utilization is $disk_utilization%, no need to add space."
+
+fi
