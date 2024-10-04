@@ -6,14 +6,21 @@
 echo "shell script to install git"
 echo "shell script running"
 
-if [ "$(uname)"  ==  "Linux" ];
-then
+if [ "$(uname)"  ==  "Linux" ]; then
         echo "this is linux system, installing git"
-        apt install git -y
-elif [ "$(uname)"  ==  "Darwin" ];
-then
-        echo "thgis is not linux system, this is MAC OS"
+	echo "installing git on Linux OS"
+        sudo apt update && sudo apt install git -y
+
+elif [ "$(uname)"  ==  "Darwin" ]; then
+        echo "this is MAC OS, installing git "
         echo "installing git on MAC"
         brew install git
-else echo "Not installing"
+
+elif [[ "$(uname -o)" == "Cygwin"  || "$(uname -o)" == "Msys" ]]; then
+	echo "this is windows OS, installing git"
+	echo "installing git on windows"
+	sudo apt update && sudo apt install git -y
+
+else echo "Not supported OS , Not installing"
+
 fi
